@@ -1,7 +1,29 @@
 {
-  "name": "unycon",
   "private": true,
+  "name": "unycon",
   "version": "0.0.0",
+  "description": "Metric/Imperial Unit Converter Browser Extension",
+  "keywords": [
+    "metric",
+    "imperial",
+    "unit converter",
+    "browser extension"
+  ],
+  "homepage": "https://github.com/lfeigl/unycon#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lfeigl/unycon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lfeigl/unycon/issues",
+    "email": "lfeigl.dev@gmail.com"
+  },
+  "license": "ISC",
+  "author": {
+    "name": "Luca Feigl",
+    "email": "lfeigl.dev@gmail.com",
+    "url": "https://github.com/lfeigl"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
@@ -19,6 +41,7 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
+    "@types/chrome": "^0.0.196",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
