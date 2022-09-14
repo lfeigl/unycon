@@ -3,12 +3,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { crx, defineManifest } from '@crxjs/vite-plugin';
 import manifestFile from './manifest.json';
-import { version } from './package.json';
+import { version, description, homepage, author } from './package.json';
 
 const manifest = defineManifest((env) => ({
-  name: `UnyCon ${env.mode === 'development' ? '🚧🚧🚧' : '🦄'}`,
-  version,
   ...manifestFile,
+  name: `UnyCon ${env.mode === 'development' ? '🚧' : '🦄'}`,
+  version,
+  description,
+  homepage_url: homepage,
+  author: author.name,
 }));
 
 // https://vitejs.dev/config/
