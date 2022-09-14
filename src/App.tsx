@@ -1,47 +1,21 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { name, version, homepage_url: homepageUrl } = chrome.runtime.getManifest();
 
   return (
     <div className="App">
       <header className="App-header">
-        <img
-          src={logo}
-          className="App-logo"
-          alt="logo"
-        />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button
-            type="button"
-            onClick={() => setCount((value) => value + 1)}
-          >
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
+        <h1 title={`v${version}`}>{name}</h1>
         <p>
           <a
             className="App-link"
-            href="https://reactjs.org"
+            href={homepageUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
+            Contribute
           </a>
         </p>
       </header>
