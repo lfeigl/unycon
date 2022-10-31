@@ -1,19 +1,46 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
 import './App.css';
+import { Dimension, Metadata, System } from './types';
+import FormGroup from './FormGroup';
 
-function App() {
-  const { name, version, homepage_url: homepageUrl } = chrome.runtime.getManifest();
+const isChromeRuntime = !!(chrome && chrome.runtime);
+const dimension = Dimension.mass;
+
+function App(): React.ReactElement {
+  const metadata: Metadata = {
+    name: 'UnyCon ❓',
+    version: '?',
+    homepageUrl: '/',
+  };
+
+  if (isChromeRuntime) {
+    const { name, version, homepage_url: homepageUrl } = chrome.runtime.getManifest();
+    Object.assign(metadata, { name, version, homepageUrl });
+  }
 
   return (
     <Container className="app py-2 text-center">
       <header>
-        <h1 title={`v${version}`}>{name}</h1>
+        <h3 title={`v${metadata.version}`}>{metadata.name}</h3>
       </header>
+      <main>
+        <Form>
+          <FormGroup
+            dimension={dimension}
+            initialSystem={System.metric}
+          />
+          <hr />
+          <FormGroup
+            dimension={dimension}
+            initialSystem={System.imperial}
+          />
+        </Form>
+      </main>
       <footer>
         <a
           className="App-link"
-          href={homepageUrl}
+          href={metadata.homepageUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
