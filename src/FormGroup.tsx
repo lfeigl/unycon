@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, InputGroup, Dropdown, DropdownButton } from 'react-bootstrap';
 import './FormGroup.css';
-import { Dimension, System } from './types';
+import { Dimension, System, Unit } from './types';
 import units from './units';
 
 function FormGroup({
@@ -11,12 +11,20 @@ function FormGroup({
   dimension: Dimension;
   initialSystem: System;
 }): React.ReactElement {
-  const [selectedUnit, setSelectedUnit] = React.useState(
-    units.find((unit) => unit.dimension === dimension && unit.system === initialSystem)
+  const getFirstMatchingUnit = (_dimension: Dimension, _system: System): Unit | null =>
+    units.find((unit) => unit.dimension === _dimension && unit.system === _system) ?? null;
+
+  const [selectedUnit, setUnit] = React.useState<Unit | null>(
+    getFirstMatchingUnit(dimension, initialSystem)
   );
 
+  React.useEffect(() => {
+    setUnit(getFirstMatchingUnit(dimension, initialSystem));
+  }, [dimension]);
+
   const handleSelect = (eventKey: string | null): void => {
-    if (eventKey) setSelectedUnit(units.find((unit) => unit.id === eventKey));
+    if (!eventKey) return;
+    setUnit(units.find((unit) => unit.id === eventKey) ?? null);
   };
 
   return (

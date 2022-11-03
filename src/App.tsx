@@ -2,12 +2,12 @@ import React from 'react';
 import { Container, Form } from 'react-bootstrap';
 import './App.css';
 import { Dimension, Metadata, System } from './types';
+import DimensionTabs from './DimensionTabs';
 import FormGroup from './FormGroup';
 
-const isChromeRuntime = !!(chrome && chrome.runtime);
-const dimension = Dimension.mass;
-
 function App(): React.ReactElement {
+  const [selectedDimension, setDimension] = React.useState<Dimension>(Dimension.length);
+  const isChromeRuntime = !!(chrome && chrome.runtime);
   const metadata: Metadata = {
     name: 'UnyCon ❓',
     version: '?',
@@ -25,14 +25,14 @@ function App(): React.ReactElement {
         <h3 title={`v${metadata.version}`}>{metadata.name}</h3>
       </header>
       <main>
+        <DimensionTabs setDimension={setDimension} />
         <Form>
           <FormGroup
-            dimension={dimension}
+            dimension={selectedDimension}
             initialSystem={System.metric}
           />
-          <hr />
           <FormGroup
-            dimension={dimension}
+            dimension={selectedDimension}
             initialSystem={System.imperial}
           />
         </Form>
