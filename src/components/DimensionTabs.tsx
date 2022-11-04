@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
-import { Dimension } from './types';
+import { Dimension } from '../types';
 
 function DimensionTabs({
   setDimension,

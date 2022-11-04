@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Form } from 'react-bootstrap';
 import './App.css';
-import { Dimension, Metadata, System } from './types';
+import { Dimension, Metadata, System } from '../types';
 import DimensionTabs from './DimensionTabs';
 import FormGroup from './FormGroup';
 

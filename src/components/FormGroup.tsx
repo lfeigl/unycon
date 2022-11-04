@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, InputGroup, Dropdown, DropdownButton } from 'react-bootstrap';
 import './FormGroup.css';
-import { Dimension, System, Unit } from './types';
-import units from './units';
+import { Dimension, System, Unit } from '../types';
+import units from '../units';
 
 function FormGroup({
   dimension,
