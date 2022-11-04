@@ -1,6 +1,6 @@
-import { Dimension, System } from '../types';
+import { Dimension, System, Unit } from '../types';
 
-const unitsOfLength = [
+const unitsOfLength: Unit[] = [
   {
     id: 'l_m_mm',
     dimension: Dimension.length,

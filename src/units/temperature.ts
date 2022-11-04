@@ -1,6 +1,6 @@
-import { Dimension, System } from '../types';
+import { Dimension, System, Unit } from '../types';
 
-const unitsOfTemperature = [
+const unitsOfTemperature: Unit[] = [
   {
     id: 't_m_c',
     dimension: Dimension.temperature,

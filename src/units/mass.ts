@@ -1,6 +1,6 @@
-import { Dimension, System } from '../types';
+import { Dimension, System, Unit } from '../types';
 
-const unitsOfMass = [
+const unitsOfMass: Unit[] = [
   {
     id: 'm_m_mg',
     dimension: Dimension.mass,
