@@ -21,6 +21,7 @@ const unitsOfLength = [
     system: System.metric,
     name: 'meters',
     abbr: 'm',
+    isBaseUnit: true,
   },
   {
     id: 'l_m_km',
@@ -49,6 +50,7 @@ const unitsOfLength = [
     system: System.imperial,
     name: 'yards',
     abbr: 'yd',
+    isBaseUnit: true,
   },
   {
     id: 'l_i_mi',

@@ -21,4 +21,5 @@ export type Unit = {
   system: System;
   name: string;
   abbr: string;
+  isBaseUnit?: boolean;
 };

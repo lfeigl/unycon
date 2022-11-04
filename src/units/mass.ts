@@ -21,6 +21,7 @@ const unitsOfMass = [
     system: System.metric,
     name: 'Kilograms',
     abbr: 'kg',
+    isBaseUnit: true,
   },
   {
     id: 'm_m_t',
@@ -42,6 +43,7 @@ const unitsOfMass = [
     system: System.imperial,
     name: 'Pounds',
     abbr: 'lb',
+    isBaseUnit: true,
   },
   {
     id: 'm_i_st',

@@ -11,10 +11,14 @@ function FormGroup({
   dimension: Dimension;
   initialSystem: System;
 }): React.ReactElement {
-  const getFirstMatchingUnit = (_dimension: Dimension, _system: System): Unit | null =>
-    units.find((unit) => unit.dimension === _dimension && unit.system === _system) ?? null;
+  const getFirstMatchingUnit = (_dimension: Dimension, _system: System): Unit => {
+    const filtered = units.filter(
+      (unit) => unit.dimension === _dimension && unit.system === _system
+    );
+    return filtered.find((unit) => unit.isBaseUnit) ?? filtered[0];
+  };
 
-  const [selectedUnit, setUnit] = React.useState<Unit | null>(
+  const [selectedUnit, setUnit] = React.useState<Unit>(
     getFirstMatchingUnit(dimension, initialSystem)
   );
 
@@ -24,7 +28,7 @@ function FormGroup({
 
   const handleSelect = (eventKey: string | null): void => {
     if (!eventKey) return;
-    setUnit(units.find((unit) => unit.id === eventKey) ?? null);
+    setUnit(units.find((unit) => unit.id === eventKey) ?? units[0]);
   };
 
   return (
