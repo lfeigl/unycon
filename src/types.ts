@@ -23,3 +23,9 @@ export type Unit = {
   abbr: string;
   isBaseUnit?: boolean;
 };
+
+export type Conversion = {
+  formGroupId: number;
+  value: number;
+  unit: Unit;
+};
