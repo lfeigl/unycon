@@ -1,21 +1,21 @@
 import React from 'react';
 import { Form, InputGroup, Dropdown, DropdownButton } from 'react-bootstrap';
 import './FormGroup.css';
-import { Dimension, System, Unit, Conversion } from '../types';
+import { Dimension, System, Unit, ConversionObject } from '../types';
 import units from '../units';
 
 function FormGroup({
   id,
   dimension,
   initialSystem,
-  conversion,
-  convert,
+  conversionObject,
+  triggerConversion,
 }: {
   id: number;
   dimension: Dimension;
   initialSystem: System;
-  convert: (conversion: Conversion) => void;
-  conversion: Conversion;
+  conversionObject: ConversionObject;
+  triggerConversion: (conversion: ConversionObject) => void;
 }): React.ReactElement {
   const getFirstMatchingUnit = (_dimension: Dimension, _system: System): Unit => {
     const filtered = units.filter(
@@ -32,14 +32,22 @@ function FormGroup({
 
   React.useEffect(() => setUnit(getFirstMatchingUnit(dimension, initialSystem)), [dimension]);
   React.useEffect(() => {
-    if (conversion.formGroupId !== id && formControlRef.current) {
-      const value = conversion.value * 2; // TODO: Add conversion logic
-      formControlRef.current.value = conversion.value === 0 ? '' : String(value);
+    if (!formControlRef.current || !conversionObject.unit || !conversionObject.unit.conversion)
+      return;
+
+    const conversion = conversionObject.unit.conversion[selectedUnit.id];
+
+    if (conversionObject.formGroupId !== id && conversion) {
+      const value =
+        typeof conversion === 'number'
+          ? conversionObject.value * conversion
+          : conversion(conversionObject.value);
+      formControlRef.current.value = conversionObject.value === 0 ? '' : String(value);
     }
-  }, [conversion]);
+  }, [conversionObject]);
 
   const handleFormControlChange = (changeEvent: React.ChangeEvent<HTMLInputElement>): void =>
-    convert({
+    triggerConversion({
       formGroupId: id,
       value: Number(changeEvent.target.value),
       unit: selectedUnit,

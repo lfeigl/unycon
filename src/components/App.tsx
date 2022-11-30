@@ -1,13 +1,15 @@
 import React from 'react';
 import { Container, Form } from 'react-bootstrap';
 import './App.css';
-import { Metadata, Dimension, System, Conversion } from '../types';
+import { Dimension, System, ConversionObject, Metadata } from '../types';
 import DimensionTabs from './DimensionTabs';
 import FormGroup from './FormGroup';
 
 function App(): React.ReactElement {
   const [selectedDimension, setDimension] = React.useState<Dimension>(Dimension.length);
-  const [selectedConversion, setConversion] = React.useState<Conversion>({} as Conversion);
+  const [selectedConversionObject, setConversion] = React.useState<ConversionObject>(
+    {} as ConversionObject
+  );
   const isChromeRuntime = !!(chrome && chrome.runtime);
   const metadata: Metadata = {
     name: 'UnyCon ❓',
@@ -32,15 +34,15 @@ function App(): React.ReactElement {
             id={0}
             dimension={selectedDimension}
             initialSystem={System.metric}
-            conversion={selectedConversion}
-            convert={setConversion}
+            conversionObject={selectedConversionObject}
+            triggerConversion={setConversion}
           />
           <FormGroup
             id={1}
             dimension={selectedDimension}
             initialSystem={System.imperial}
-            conversion={selectedConversion}
-            convert={setConversion}
+            conversionObject={selectedConversionObject}
+            triggerConversion={setConversion}
           />
         </Form>
       </main>

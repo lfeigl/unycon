@@ -1,22 +1,31 @@
-import { Dimension, System, Unit } from '../types';
+import { Unit, LengthIds, Dimension, System } from '../types';
 
 const unitsOfLength: Unit[] = [
   {
-    id: 'l_m_mm',
+    id: LengthIds.millimeter,
     dimension: Dimension.length,
     system: System.metric,
     name: 'millimeters',
     abbr: 'mm',
+    conversion: {
+      [LengthIds.centimeter]: 1 / 10,
+      [LengthIds.meter]: 1 / 1_000,
+      [LengthIds.kilometer]: 1 / 1_000_000,
+      [LengthIds.inch]: 1 / 25.4,
+      [LengthIds.foot]: 1 / 304.8,
+      [LengthIds.yard]: 1 / 914.4,
+      [LengthIds.mile]: 1 / 1_609_300,
+    },
   },
   {
-    id: 'l_m_cm',
+    id: LengthIds.centimeter,
     dimension: Dimension.length,
     system: System.metric,
     name: 'centimeters',
     abbr: 'cm',
   },
   {
-    id: 'l_m_m',
+    id: LengthIds.meter,
     dimension: Dimension.length,
     system: System.metric,
     name: 'meters',
@@ -24,28 +33,28 @@ const unitsOfLength: Unit[] = [
     isBaseUnit: true,
   },
   {
-    id: 'l_m_km',
+    id: LengthIds.kilometer,
     dimension: Dimension.length,
     system: System.metric,
     name: 'kilometers',
     abbr: 'km',
   },
   {
-    id: 'l_i_in',
+    id: LengthIds.inch,
     dimension: Dimension.length,
     system: System.imperial,
     name: 'inches',
     abbr: '″ / in',
   },
   {
-    id: 'l_i_ft',
+    id: LengthIds.foot,
     dimension: Dimension.length,
     system: System.imperial,
     name: 'feet',
     abbr: '′ / ft',
   },
   {
-    id: 'l_i_yd',
+    id: LengthIds.yard,
     dimension: Dimension.length,
     system: System.imperial,
     name: 'yards',
@@ -53,7 +62,7 @@ const unitsOfLength: Unit[] = [
     isBaseUnit: true,
   },
   {
-    id: 'l_i_mi',
+    id: LengthIds.mile,
     dimension: Dimension.length,
     system: System.imperial,
     name: 'miles',

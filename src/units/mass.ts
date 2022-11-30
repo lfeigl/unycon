@@ -1,22 +1,22 @@
-import { Dimension, System, Unit } from '../types';
+import { Unit, MassIds, Dimension, System } from '../types';
 
 const unitsOfMass: Unit[] = [
   {
-    id: 'm_m_mg',
+    id: MassIds.milligram,
     dimension: Dimension.mass,
     system: System.metric,
     name: 'Milligrams',
     abbr: 'mg',
   },
   {
-    id: 'm_m_g',
+    id: MassIds.gram,
     dimension: Dimension.mass,
     system: System.metric,
     name: 'Grams',
     abbr: 'g',
   },
   {
-    id: 'm_m_kg',
+    id: MassIds.kilogram,
     dimension: Dimension.mass,
     system: System.metric,
     name: 'Kilograms',
@@ -24,21 +24,21 @@ const unitsOfMass: Unit[] = [
     isBaseUnit: true,
   },
   {
-    id: 'm_m_t',
+    id: MassIds.tonne,
     dimension: Dimension.mass,
     system: System.metric,
     name: 'Tonnes',
     abbr: 't',
   },
   {
-    id: 'm_i_oz',
+    id: MassIds.ounce,
     dimension: Dimension.mass,
     system: System.imperial,
     name: 'Ounces',
     abbr: 'oz',
   },
   {
-    id: 'm_i_lb',
+    id: MassIds.pound,
     dimension: Dimension.mass,
     system: System.imperial,
     name: 'Pounds',
@@ -46,7 +46,7 @@ const unitsOfMass: Unit[] = [
     isBaseUnit: true,
   },
   {
-    id: 'm_i_st',
+    id: MassIds.stone,
     dimension: Dimension.mass,
     system: System.imperial,
     name: 'Stones',
