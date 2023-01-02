@@ -30,11 +30,9 @@ function FormGroup({
 
   const formControlRef: React.RefObject<HTMLInputElement> = React.createRef<HTMLInputElement>();
 
-  React.useEffect(() => setUnit(getFirstMatchingUnit(dimension, initialSystem)), [dimension]);
-  React.useEffect(() => {
+  const convert = (): void => {
     if (!formControlRef.current || !conversionObject.unit || !conversionObject.unit.conversion)
       return;
-
     const conversion = conversionObject.unit.conversion[selectedUnit.id];
 
     if (conversionObject.formGroupId !== id && conversion) {
@@ -43,8 +41,29 @@ function FormGroup({
           ? conversionObject.value * conversion
           : conversion(conversionObject.value);
       formControlRef.current.value = conversionObject.value === 0 ? '' : String(value);
+
+      console.log(
+        '[CONVERTED]',
+        conversionObject.value,
+        conversionObject.unit.abbr,
+        '→',
+        value,
+        selectedUnit.abbr
+      );
     }
-  }, [conversionObject]);
+  };
+
+  React.useEffect(() => setUnit(getFirstMatchingUnit(dimension, initialSystem)), [dimension]);
+  React.useEffect(() => convert(), [conversionObject]);
+  React.useEffect(
+    () =>
+      triggerConversion({
+        formGroupId: id,
+        value: Number(formControlRef.current?.value),
+        unit: selectedUnit,
+      }),
+    [selectedUnit]
+  );
 
   const handleFormControlChange = (changeEvent: React.ChangeEvent<HTMLInputElement>): void =>
     triggerConversion({
